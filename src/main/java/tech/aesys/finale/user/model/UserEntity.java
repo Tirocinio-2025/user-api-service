@@ -1,12 +1,6 @@
 package tech.aesys.finale.user.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
-import java.util.List;
-
-
-import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Set;
