@@ -1,30 +1,34 @@
 package tech.aesys.finale.user.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Entity(name = "user_role")
-public
-@Data
-@AllArgsConstructor
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "user_role",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "role_id"}))
+@Getter
+@Setter
 @NoArgsConstructor
-class UserRole {
+@AllArgsConstructor
+@Builder
+public class UserRole implements Serializable {
 
-    @EmbeddedId
-    private UserRolePK id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // oppure potresti usare una chiave composta
 
-    @ManyToOne
-    @MapsId("user_id")
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserEntity user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id", nullable = false)
+    private RoleEntity role;
 
 
-    @ManyToOne
-    @MapsId("role_id")
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private Role role;
 
-    
 }
+

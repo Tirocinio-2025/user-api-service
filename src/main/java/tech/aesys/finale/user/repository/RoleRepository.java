@@ -2,9 +2,11 @@ package tech.aesys.finale.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import tech.aesys.finale.user.model.Role;
+import tech.aesys.finale.user.model.RoleEntity;
+
+import java.util.Optional;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role,Long> {
-    Role findByName(String name);
+public interface RoleRepository extends JpaRepository<RoleEntity, Long> {
+    Optional<RoleEntity> findByName(String name);
 }

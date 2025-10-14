@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import tech.aesys.finale.user.security.util.JwtUtils;
+import tech.aesys.finale.user.service.CustomUserDetailsService;
 
 import java.io.IOException;
 
@@ -20,6 +22,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtUtils jwtUtils;
     private final CustomUserDetailsService userDetailsService;
+
     public JwtAuthenticationFilter(JwtUtils jwtUtils, CustomUserDetailsService uds) {
         this.jwtUtils = jwtUtils;
         this.userDetailsService = uds;
