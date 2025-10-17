@@ -28,7 +28,6 @@ public class FilterChainConfig {
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // stateless per JWT
                 .authenticationProvider(customAuthenticationProvider);
-        // registra il filtro JWT prima del filtro di username/password
         http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }

@@ -1,17 +1,14 @@
 package tech.aesys.finale.user.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import tech.aesys.finale.user.dto.TokenValidationResponse;
 import tech.aesys.finale.user.model.AuthRequest;
-import tech.aesys.finale.user.repository.RoleRepository;
-import tech.aesys.finale.user.repository.UserRepository;
-import tech.aesys.finale.user.repository.UserRoleRepository;
 import tech.aesys.finale.user.security.util.JwtUtils;
 
 @Service
@@ -32,5 +29,7 @@ public class AuthService {
     }
 
     public void logout() {
+        SecurityContextHolder.clearContext();
     }
+
 }

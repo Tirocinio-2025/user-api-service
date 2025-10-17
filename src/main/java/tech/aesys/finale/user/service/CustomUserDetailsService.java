@@ -13,19 +13,12 @@ import tech.aesys.finale.user.repository.UserRepository;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-//    private final UserService userService;
-
     private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        UserEntity userEntity = userService.getByUsername(username)
-//                .orElseThrow(() -> new UsernameNotFoundException("Utente non trovato"));
-
-
-        UserEntity userEntity = userRepository.findByUsernameWithRoles(username).orElseThrow(() -> new UsernameNotFoundException("Utente non trovato"));;
-
-
+        UserEntity userEntity = userRepository.findByUsernameWithRoles(username)
+                                .orElseThrow(() -> new UsernameNotFoundException("Utente non trovato"));
         return User.withUsername(userEntity.getUsername())
                 .password(userEntity.getPassword()) // password già codificata
                 .roles() // es. "ADMIN"
